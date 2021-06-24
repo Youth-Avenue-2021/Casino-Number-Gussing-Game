@@ -2,7 +2,7 @@
 # Casino-Number-Gussing-Game
 
 In this virtual era, everything is on our fingertips be it an online class, e-library and of course games.
-Games are a part of everyone's lives. Many games freshens up us & others skills us up.
+Games are a part of everyone's lives. Many games freshens us up & others skills us up.
 Well, here we introduced a game FUSION which is a blend of CASINO and NUMBER GUESSING game. 
 You can play this at your ease by following the rules descripted below and also in the game.
 You can either run this program on an online compiler by clicking on the link given below 
