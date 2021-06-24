@@ -17,7 +17,7 @@ int betAmount = 0;
 // main function
 int main(void) {
 
-    getRules();   
+    getRules();
 
     // take player's name
     cout << "\nPlease enter your name : ";
@@ -31,13 +31,13 @@ int main(void) {
             gameLogic();
         }
         else {
-            string playAgain;   
+            string playAgain;
             cout << "\nDO you want to play again ? (y/n) : ";
             cin >> playAgain;
 
             // if balance is 0, the loop terminates i.e., game ends
             if (totalAmount > 0) {
-                    if (playAgain == "y" || playAgain == "Y") {
+                if (playAgain == "y" || playAgain == "Y") {
                     // display current balance
                     cout << "Now, Your total balance is : " << totalAmount << "$" << endl;
                     gameLogic();   // re-starts the game
@@ -192,7 +192,7 @@ void getRules() {
     // command to clear terminal...
     system("cls");
     // it works only for few online terminals/compiler
-    
+
     cout << "\n\t= = = = = = = = = = = = = = = = = = = = = = = =\n";
     cout << "\n\t     * CASINO NUMBER GUESSING RULES! * \n";
     cout << "\n\t-----------------------------------------------\n";
