@@ -1,16 +1,23 @@
 
 # Casino-Number-Gussing-Game
 
-Add description of game
+In this virtual era, everything is on our fingertips be it an online class, e-library and of course games.
+Games are a part of everyone's lives. Many games freshens up us & others skills us up.
+Well, here we introduced a game FUSION which is a blend of CASINO and NUMBER GUESSING game. 
+You can play this at your ease by following the rules descripted below and also in the game.
+You can either run this program on an online compiler by clicking on the link given below 
+or copy the codeand try it on your own device.
 ## Documentation
 
-### How to play this game !
+### How to play this game ?
 
-- Choose a number between 1 to 100
-- Winner gets 20 times of the bid money
-- Wrong choice, and you lose (bid amount / 10)$ per wrong guess of the amount you bet.
-- Wrong choice till end the game, you loss multiplied by 2 of bid amount from total balance
-- Number of chance to guess the number is 10.
+- First, you need to enter your balance and then your bidding amount
+- Then you have to guess a number between 1 to 100
+- You will get a total of 10 chances to guess the correct number
+- If you guess the correct number, you win 20 times the bid amount
+- For each wrong guess, you lose (bid amount / 10)$ per wrong guess of the amount you bet
+- Once you get finished with all of your chances, you will lose twice the bid amount from your total balance
+
 
 To quit the game anytime, press ctrl+c
 ## Online Compile
@@ -213,19 +220,20 @@ void getRules() {
     cout << "\n\t= = = = = = = = = = = = = = = = = = = = = = = =\n";
     cout << "\n\t * CASINO NUMBER GUESSING RULES! * \n";
     cout << endl;
-    cout << "\t1. Choose a number between 1 to 100\n";
-    cout << "\t2. Winner gets 20 times of the bid money\n";
-    cout << "\t3. Wrong choice, and you lose (bid amount / 10)$ per wrong guess of the amount you bet\n";
-    cout << "\t4. Wrong choice till end the game, you loss multiplied by 2 of bid amount from total balance\n";
-    cout << "\t5. Number of chance to guess the number is 10.\n";
-    cout << "\t==> To quit the game anytime, press ctrl+c\n";
+    cout << "\t1. First, you need to enter your balance and then your bidding amount\n";
+    cout << "\t2. Then you have to guess a number between 1 to 100\n";
+    cout << "\t3.You will a total of 10 chances to guess the correct number\n";
+    cout << "\t4. If you guess the correct number, you win 20 times the bid amount\n";
+    cout << "\t5. For each wrong guess, you lose (bid amount / 10)$ per wrong guess of the amount you bet\n";
+    cout << "\t6. Once you get finished with all your chances, you will lose twice the bid amount from your total balance\n";
+    cout << "\t==> To quit the game, press ctrl+c\n";
     cout << "\n\t= = = = = = = = = = = = = = = = = = = = = = = =\n";
     cout << endl;
 }
 ```
 
   
-## Contributing
+## Contribution
 
-Contributions are always welcome!
+Contributions are always welcomed!
   
