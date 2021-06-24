@@ -24,12 +24,12 @@ Compile this game in online plateform
 
 ```c++
 #include <iostream>
-// include some library to generate random number in this game
+// below two libraries are to generate random number 
 #include <cstdlib>
 #include <ctime>
 using namespace std;
 
-// function definitions
+// function prototype
 void getRules();
 int getAmountData();
 int gameLogic();
@@ -41,46 +41,48 @@ int betAmount = 0;
 
 // main function
 int main(void) {
-    // call getRules defined function
-    getRules();
-    // getting username...
+
+    getRules();   
+
+    // take player's name
     cout << "\nPlease enter your name : ";
     cin >> userName;
-    // do-while loop for run game while total balance finished...
+
+    // following do-while loop will run until the balance is zero
     do {
-        // set this condition for do this only first time... when program run...
+        // the following if condition runs iff total amount is zero provided it runs once in the entire game
         if (totalAmount == 0) {
             getAmountData();
             gameLogic();
         }
         else {
-            // (string) playAgain to check user want to play again or not ??
-            string playAgain;
+            string playAgain;   
             cout << "\nDO you want to play again ? (y/n) : ";
             cin >> playAgain;
-            // set condition for if user have not any balance then exit from loop (game)...
-            if (totalAmount > 0) {
 
-                if (playAgain == "y" || playAgain == "Y") {
-                    // displaying user howmany balance are left
+            // if balance is 0, the loop terminates i.e., game ends
+            if (totalAmount > 0) {
+                    if (playAgain == "y" || playAgain == "Y") {
+                    // display current balance
                     cout << "Now, Your total balance is : " << totalAmount << "$" << endl;
-                    // if user want to play game again then run gameLogic function and again start the game 
-                    gameLogic();
+                    gameLogic();   // re-starts the game
                 }
-                // if user don't want to play again then break do-while loop...
+
+                // if no, terminate the do-while loop
                 else if (playAgain == "n" || playAgain == "N" || totalAmount == 0) {
                     cout << "Thank you for playing this game !\n" << endl;
                     break;
                 }
+
+                // if player enters inappropriate response
                 else {
-                    // if user enter wrong character by mistake...
                     cout << "Please enter proper characters." << endl;
                     cout << "\nDO you want to play again ? (y/n) : ";
                     cin >> playAgain;
                 }
             }
             else {
-                cout << "\nSorry, You don't play now, you don't have more balance" << endl;
+                cout << "\n Ooppss! Your balance is vanished, you cannot play with zero balance." << endl;
                 cout << "Thank you for playing this game !\n" << endl;
                 break;
             }
@@ -90,7 +92,7 @@ int main(void) {
     return 0;
 }
 
-// function for amount data about total howmany $ have user... and it's all about... 
+// function to take & display player's balance 
 int getAmountData() {
     cout << "\nEnter your balance : $";
     cin >> totalAmount;
@@ -98,22 +100,25 @@ int getAmountData() {
     return 0;
 }
 
-// building game logic function
+// function describing the game logic
 int gameLogic() {
-    // declaring this variable to define howmany bid user betting...!
+    // to declare the bid amount
     int betAmountScope = totalAmount - 10;
-    // defining this variable for howmany amount decreasing per wrong guess
+    // to declare the loss per wrong guess
     int decreasingAmount;
-    // terminating this loop (do-while) if user entered bid amount greter than total balance and also if user not entered bid amount in multiplication of 10 ...
+    // the following do-while loop checks two conditions:
+    // 1. bid amount is less than or equal to balance
+    // 2. bid amount is multiple of 10
+
     do {
-        // running this loop while user enter bet amount less than or equal to total amount
+        // loop to check condition 1
         do {
             if (totalAmount < betAmountScope) {
                 cout << "\nYour betting amount should be less than your balance, please bid again: $";
                 cin >> betAmountScope;
             }
         } while (totalAmount < betAmountScope);
-        // running this loop while user enter bet amount in multiplication by 10...
+        // loop to check condition 2
         do {
             if (betAmountScope % 10 != 0) {
                 cout << "Please enter correct bid amount by required (multiplication by 10)...!" << endl;
@@ -121,53 +126,56 @@ int gameLogic() {
             cout << "\nPlease enter your bid amount (In *10) : $";
             cin >> betAmountScope;
         } while (betAmountScope % 10 != 0);
-
     } while (totalAmount < betAmountScope || betAmountScope % 10 != 0);
+
     cout << "you bet " << betAmountScope << "$" << endl;
-    // decrease betting amount from total balance...
-    // decreasing amount for 1st time and if user loss game then once again cut bet amount from total balance
+
+    // decrease the bidding amount from total balance for the first time if player loses
     totalAmount -= betAmountScope;
     cout << "\nNow, Your total balance is : " << totalAmount << "$" << endl;
     cout << "you have total 10 maximum chances to guess correct number...!" << endl;
-    // I already defined betAmount in global scop but its decreasing if guess wrong then how could we know howmany bid amount user bitting ? so,...
+
+    // betamount stores the bid amount i.e., 20-18-16-14-12
+    // betamountscope stores the bidding amount
     betAmount = betAmountScope;
 
-    // if user bid 10$ then 1$ cut per wrong guess...
-    // if user bid 20$ then 2$ cut per wrong guess...
-    // if user bid 30$ then 3$ cut per wrong guess...
-    // this logic works something like this...
+    // money decreasing logic:
+    // if user bids 10$ then 1$ cuts per wrong guess
+    // if user bids 20$ then 2$ cuts per wrong guess
+    // if user bids 30$ then 3$ cuts per wrong guess
+    // and so on...
     decreasingAmount = (betAmountScope / 10);
     cout << "Decrease " << decreasingAmount << "$ per wrong guess...!" << endl;
 
-    // generating random number
+    // generate a random number
     srand(time(0));
-    // limit of generating random number between : 1 => 100
+    // limit of random number between : 1 => 100
     int randomNumber = (rand() % 100) + 1;
     // cout << "Random No is : " << randomNumber << endl;
-    // defining this localscop userChoice variable to define which number user guessed ?
+
+    // local scope variable for player to guess number
     int userChoice;
     cout << "\nHey " << userName << "! Guess a number between 1 to 100 : ";
-    // getting input userChoice number...
     cin >> userChoice;
-    // terminating this loop (do-while) while user guess correct number...
-    // if guessed correct number then break loop and user win game...
+
+    // this do-while loop terminates once player wins by guessing correct number
     do {
-        // halping to show user, is it guessing lower or higher number than computer-random-number...
+        // hint for the player to guess the number
         if (randomNumber < userChoice) {
-            // halping user to say that you are to close to guess correct number...
-            // and it's different between 10...
+            // hint if guessed number is 10 numbers behind/forword
             if (userChoice - randomNumber < 10) {
                 cout << "good! you are too close please try to guess the correct number...!" << endl;
             }
-            // if user guess wrong number then cut 1$ from betting amount...
+
+            // if wrong guess, decrease n$ from betting amount
             betAmount -= decreasingAmount;
             cout << "Now your bet amount is : $" << betAmount << endl;
             cout << "Please guess lower number...!" << endl;
             cout << "\nguess again : ";
-            // again input number from user to guess correct number...
             cin >> userChoice;
         }
-        // also same logic of above...
+
+        // hint for the player to guess the number
         else if (randomNumber > userChoice) {
             if (randomNumber - userChoice < 10) {
                 cout << "good! you are too close please try to guess the correct number...!" << endl;
@@ -178,7 +186,8 @@ int gameLogic() {
             cout << "\nguess again : ";
             cin >> userChoice;
         }
-        // if bid amount finished then break this loop and user loss the game...
+
+        // if bid amount vanished, loop breaks and player loses the game
         if (betAmount <= 1) {
             cout << "Oops! You lost the game...! Your betting amount finished (your chances finished...!)" << endl;
             // decrease betamount from balance (2nd time... because by rule bid amount*2 cut from total balance)
@@ -192,36 +201,37 @@ int gameLogic() {
             break;
         }
     } while (userChoice != randomNumber);
-    // if user guessed correct number... then win game...
+
+    // if correctly guessed, player wins
     if (userChoice == randomNumber) {
         cout << "Congratulations " << userName << ", You won the game...!" << endl;
-        // by rule user get 20 times more of bid amount...
+        // by rule, user gets 20 times of the bid amount...
         totalAmount += betAmount * 20;
         cout << "Now, Your total balance is : " << totalAmount << "$" << endl;
     }
     return 0;
 }
 
-// function to show rules to user
+// function to display rules of the game
 void getRules() {
-    // about game...
-    if (totalAmount == 0) {
-        // command to clear terminal...
-        system("cls");
-        // its not work for some online terminals
-    }
+    // command to clear terminal...
+    system("cls");
+    // it works only for few online terminals/compiler
+    
     cout << "\n\t= = = = = = = = = = = = = = = = = = = = = = = =\n";
-    cout << "\n\t * CASINO NUMBER GUESSING RULES! * \n";
+    cout << "\n\t     * CASINO NUMBER GUESSING RULES! * \n";
+    cout << "\n\t-----------------------------------------------\n";
     cout << endl;
     cout << "\t1. Choose a number between 1 to 100\n";
     cout << "\t2. Winner gets 20 times of the bid money\n";
     cout << "\t3. Wrong choice, and you lose (bid amount / 10)$ per wrong guess of the amount you bet\n";
-    cout << "\t4. Wrong choice till end the game, you loss multiplied by 2 of bid amount from total balance\n";
-    cout << "\t5. Number of chance to guess the number is 10.\n";
-    cout << "\t==> To quit the game anytime, press ctrl+c\n";
+    cout << "\t4. Wrong choice till end the game, you lose twice the bid amount from total balance\n";
+    cout << "\t5. Number of chances to guess the number is 10.\n";
+    cout << "\t==> To quit the game, press ctrl+c\n";
     cout << "\n\t= = = = = = = = = = = = = = = = = = = = = = = =\n";
     cout << endl;
 }
+
 ```
 
   
