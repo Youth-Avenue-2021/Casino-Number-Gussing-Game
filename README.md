@@ -247,5 +247,5 @@ void getRules() {
   
 ## Contribution
 
-Contributions are always welcomed!
+Contributions are always welcomed...!
   
