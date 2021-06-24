@@ -92,7 +92,7 @@ int gameLogic() {
                 cout << "\nYour betting amount should be less than your balance, please bid again: $";
                 cin >> betAmountScope;
             }
-        } while (totalAmount < betAmountScope);
+        } while (totalAmount <= betAmountScope);
         // loop to check condition 2
         do {
             if (betAmountScope % 10 != 0) {
